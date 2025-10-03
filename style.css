@@ -1,232 +1,157 @@
-/* Custom CSS Overrides for Bootstrap and Attractive UI */
+/* Basic Reset and Variables */
 :root {
-    /* Brighter, more attractive primary color */
-    --primary-color: #007bff; /* Blue */
-    --secondary-color: #6c757d; /* Gray */
-    --success-color: #28a745;
-    --error-color: #dc3545;
-    --background-light: #f8f9fa;
-    --card-bg: #ffffff;
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --light-color: #f8f9fa;
+    --white-color: #fff;
     --border-color: #dee2e6;
-}
-
-* {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    box-sizing: border-box;
+    --bg-light: #f8f9fa;
 }
 
 body {
-    background-color: var(--background-light);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--white-color);
+    color: #333;
 }
 
 .container {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-/* Header Animation */
+/* Header & H1 Styling */
+header {
+    border-bottom: 1px solid var(--border-color);
+}
 .display-4 {
-    animation: fadeInDown 0.8s ease-out;
+    font-size: 2.5rem;
 }
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Tool Selector Styles */
-.tool-selector {
-    background-color: var(--card-bg);
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out, box-shadow 0.3s;
-}
-
-.tool-selector:hover {
-    border-color: var(--primary-color);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.2);
-}
-
-.tool-selector.active {
-    border-color: var(--primary-color) !important;
-    background-color: #e9f0ff;
-    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.4) !important;
-    transform: none;
-}
-
-.tool-selector h2 {
+.text-primary {
     color: var(--primary-color) !important;
 }
-
-.tool-content-area {
-    border-radius: 15px;
+.text-secondary {
+    color: var(--secondary-color) !important;
 }
 
-/* Upload Box Styling */
-.upload-box {
-    background-color: #f0f7ff;
-    transition: background-color 0.3s;
+/* Navigation/Tool Selector */
+.nav-pills .nav-link {
+    border-radius: .25rem;
+    color: var(--secondary-color);
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    margin: 0 5px;
+    transition: all 0.3s;
 }
-.upload-box label {
-    cursor: pointer;
-    user-select: none;
-}
-.upload-box input[type="file"] {
-    display: none;
-}
-.upload-box:hover {
-    background-color: #e0f0ff;
-}
-.upload-box .fs-1 {
+.nav-pills .nav-link:hover {
     color: var(--primary-color);
+    border-color: var(--primary-color);
 }
-.border-dashed {
-    border-style: dashed !important;
-    border-color: var(--primary-color) !important;
+.nav-pills .nav-link.active {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.nav-fill .nav-link {
+    flex-grow: 1;
 }
 
-/* Image Preview Item Styles */
-.image-preview-list {
-    min-height: 100px;
-    background-color: var(--background-light);
-    border-radius: 10px !important;
+/* Card and Tool Area */
+.card {
+    border: none;
+    border-radius: 1rem;
 }
-.image-preview-item {
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+/* File Upload Area */
+.border-dashed {
+    border: 2px dashed var(--primary-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.text-primary-link {
+    color: var(--primary-color);
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white-color);
+}
+.btn-lg {
+    padding: .75rem 1.25rem;
+    font-size: 1.25rem;
+    border-radius: .5rem;
+}
+
+/* Image List for Reordering */
+.image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    min-height: 50px; /* Space for drag-and-drop area */
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: .5rem;
+}
+.image-item {
     position: relative;
     width: 100px;
     height: 100px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    border-radius: 0.25rem;
+    cursor: grab;
     overflow: hidden;
-    background-color: var(--card-bg);
-    transition: transform 0.2s, border-color 0.2s;
 }
-.image-preview-item:hover {
-    transform: scale(1.05);
-}
-
-/* Style for the order number (PDF Tool) */
-.image-order-number {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 0.8em;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-bottom-right-radius: 4px;
-    z-index: 10;
-    transition: background-color 0.2s, opacity 0.2s;
-}
-
-/* --- NEW STYLE: Order Setter Badge for Click-to-Order --- */
-.order-setter-badge {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.95);
-    color: var(--primary-color);
-    font-size: 2em;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid var(--primary-color);
-    cursor: pointer;
-    z-index: 20;
-    opacity: 0; /* Hidden by default */
-    transition: opacity 0.2s, transform 0.2s;
-}
-.image-preview-list.ordering-mode .image-preview-item {
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-.image-preview-list.ordering-mode .image-preview-item:hover {
-    border-color: var(--primary-color);
-}
-.image-preview-list.ordering-mode .image-preview-item:hover .order-setter-badge {
-    opacity: 1; /* Show badge on hover when in ordering mode */
-}
-/* ------------------------------------- */
-
-
-.image-preview-item img {
+.image-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
-.image-name {
-    display: block;
+.image-item .remove-btn {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    top: 2px;
+    right: 2px;
     background: rgba(0, 0, 0, 0.6);
     color: white;
-    font-size: 0.6em;
-    padding: 2px 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.remove-btn {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: var(--error-color);
-    color: white;
-    border: 2px solid var(--card-bg);
+    border: none;
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    line-height: 1;
     font-size: 12px;
+    line-height: 1;
+    padding: 0;
     cursor: pointer;
-    z-index: 10;
-    opacity: 0.8;
-    transition: opacity 0.2s, transform 0.2s;
-}
-.remove-btn:hover {
-    opacity: 1;
-    transform: scale(1.2);
 }
 
-/* Status Message Animation */
-.status-message.alert {
-    display: block !important;
-    margin-top: 0;
-    animation: slideIn 0.5s ease-out;
-}
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.status-message.alert.d-none {
-    display: none !important;
-}
+/* Utility Classes (Minimalist Bootstrap) */
+.text-center { text-align: center; }
+.py-4 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.py-5 { padding-top: 3rem; padding-bottom: 3rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+.mt-5 { margin-top: 3rem; }
+.p-4 { padding: 1.5rem; }
+.p-5 { padding: 3rem; }
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.me-2 { margin-right: 0.5rem; }
+.fw-bold { font-weight: bold; }
+.bg-light { background-color: var(--bg-light) !important; }
+.gap-2 > * { margin-bottom: 0.5rem; }
 
-/* Tool Content Visibility */
-.tool-content.hidden {
-    display: none;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .nav-pills .nav-link {
+        margin: 5px 0;
+    }
 }
